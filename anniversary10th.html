@@ -98,7 +98,7 @@
         text: "Makasih sudah sabar, setia, gak bosen terus sama aku, dan tetap milih aku tiap hari 🥰"
       },
       {
-        quiz: true,
+        quiz1: true,
         title: "Ku kasih kuis 😆",
         question: "Aku itu apa sih buat kamu?",
         options: [
@@ -108,7 +108,7 @@
         ]
       },
       {
-        quiz: true,
+        quiz2: true,
         title: "Ku kasih kuis lagi 😆",
         question: "Hari ini rencananya jadi gimana?",
         options: [
@@ -168,19 +168,33 @@
       }
     }
 
-    function answerQuiz(answer) {
+    function answerQuiz1(answer) {
       const card = document.getElementById("card");
       card.innerHTML = `
         <h1>😏😏</h1>
         <p>
           Kamu pilih:<br>
           <strong>${answer}</strong><br><br>
-          Emang iya? Yakin? Pokok bukan sama nuna yahhh😌
+          Emang iya? Yakin? Pokok bukan nuna atau sama nuna yahhh😌
         </p>
         <button onclick="nextStep()">Lanjut Ayanggg</button>
       `;
       createHeart();
     }
+
+    function answerQuiz2(answer) {
+        const card = document.getElementById("card");
+        card.innerHTML = `
+          <h1>😏😏</h1>
+          <p>
+            Kamu pilih:<br>
+            <strong>${answer}</strong><br><br>
+            Yakin bisa? Gas se 😌
+            </p>
+            <button onclick="nextStep()">Lanjut Ayanggg</button>
+        `;
+        createHeart();
+      }
 
     function createHeart() {
       const heart = document.createElement("div");
