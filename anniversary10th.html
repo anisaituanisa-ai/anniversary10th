@@ -49,7 +49,6 @@
       color: white;
       font-size: 16px;
       cursor: pointer;
-      transition: transform 0.2s, background 0.2s;
     }
 
     button:hover {
@@ -95,7 +94,7 @@
       },
       {
         title: "Terima Kasih 🤍",
-        text: "Makasih sudah sabar, setia, gak bosen terus sama aku, dan tetap milih aku tiap hari 🥰"
+        text: "Makasih sudah sabar, setia, gak bosen terus sama aku 🥰"
       },
       {
         quiz: true,
@@ -107,22 +106,21 @@
       {
         quiz: true,
         id: 2,
-        title: "Ku kasih kuis lagi 😆",
+        title: "Kuis lagi 😆",
         question: "Hari ini rencananya jadi gimana?",
         options: [
           "Sesuai rencana awal banget",
-          "Sesuai rencana baru tapi seharian full sampai ganti hari",
-          "Gak ngapa ngapain"
+          "Sesuai rencana baru tapi seharian full",
+          "Gak ngapa-ngapain"
         ]
       },
-      
       {
         title: "🥰💖",
         text: "Jangan lupa nanti nyiapin bajumu yaaaa 😚"
       },
       {
-        title: "Peluk Virtual Dulu 🤗",
-        text: "Kalau oppa senyum sekarang atau malah daritadi, berarti pelukanku masih otw, nunggu ketemu baru bisa peyuk 💞"
+        title: "Peluk Virtual 🤗",
+        text: "Kalau kamu senyum sekarang, berarti pelukanku nyampe 💞"
       }
     ];
 
@@ -131,71 +129,67 @@
     function nextStep() {
       const card = document.getElementById("card");
 
-      if (index < steps.length) {
-        const step = steps[index];
-
-        if (step.quiz) {
-          card.innerHTML = `
-            <h1>${step.title}</h1>
-            <p>${step.question}</p>
-            ${step.options.map(opt =>
-              `<button onclick="answerQuiz('${opt}', ${step.id})>${opt}</button>`
-            ).join("")}
-          `;
-        } else {
-          card.innerHTML = `
-            <h1>${step.title}</h1>
-            <p>${step.text}</p>
-            <button onclick="nextStep()">Lanjut ayanggg 💌</button>
-          `;
-        }
-
-        createHeart();
-        index++;
-      } else {
+      if (index >= steps.length) {
         card.innerHTML = `
           <h1>💖💖💖</h1>
           <p>
-            Makasih sudah mau sama aku sampai detik ini 🤍<br>
-            Moga kita terus bareng,<br>
-            ketawa bareng,<br>
-            gak bosen bosen sama aku,<br>
-            dan tumbuh bareng 🌱<br><br>
-            <strong>Happy Anniversary, Sayangggg ❤️</strong>
+            Makasih sudah bareng aku sampai sekarang 🤍<br><br>
+            Happy Anniversary, Sayanggg ❤️
           </p>
         `;
+        return;
       }
+
+      const step = steps[index];
+
+      if (step.quiz) {
+        card.innerHTML = `
+          <h1>${step.title}</h1>
+          <p>${step.question}</p>
+          ${step.options.map(opt =>
+            `<button onclick="answerQuiz('${opt}', ${step.id})">${opt}</button>`
+          ).join("")}
+        `;
+      } else {
+        card.innerHTML = `
+          <h1>${step.title}</h1>
+          <p>${step.text}</p>
+          <button onclick="nextStep()">Lanjut ayanggg 💌</button>
+        `;
+      }
+
+      createHeart();
+      index++;
     }
 
     function answerQuiz(answer, quizId) {
       const card = document.getElementById("card");
-      
+
       if (quizId === 1) {
         card.innerHTML = `
-          <h1>😏😏</h1>
+          <h1>😏</h1>
           <p>
-            Kamu pilih:<br>
-            <strong>${answer}</strong><br><br>
-            Emang iya? Yakin? Pokok bukan nuna atau sama nuna yahhh😌
+            Kamu pilih <strong>${answer}</strong><br><br>
+            Pokoknya jawabannya aku 😌
           </p>
-          <button onclick="nextStep()">Lanjut Ayanggg</button>
+          <button onclick="nextStep()">Lanjut 💖</button>
         `;
-        createHeart();
       }
 
       if (quizId === 2) {
         card.innerHTML = `
-          <h1>😏😏</h1>
+          <h1>🔥</h1>
           <p>
-            Kamu pilih:<br>
-            <strong>${answer}</strong><br><br>
-            Yakin bisa? Gas se 😌
+            Ooo ${answer}?<br><br>
+            Gas se 😌
           </p>
-          <button onclick="nextStep()">Lanjut Ayanggg</button>
+          <button onclick="nextStep()">Lanjut 💖</button>
         `;
-        createHeart();
-       }
-      
+      }
+
+      createHeart();
+    }
+
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
