@@ -114,7 +114,7 @@
           "Sesuai rencana baru tapi seharian full sampai ganti hari",
           "Gak ngapa ngapain"
         ]
-      }
+      },
       
       {
         title: "🥰💖",
@@ -139,7 +139,7 @@
             <h1>${step.title}</h1>
             <p>${step.question}</p>
             ${step.options.map(opt =>
-              `<button onclick="answerQuiz('${opt}')">${opt}, ${step.id})>${opt}</button>`
+              `<button onclick="answerQuiz('${opt}', ${step.id})>${opt}</button>`
             ).join("")}
           `;
         } else {
@@ -194,7 +194,7 @@
           <button onclick="nextStep()">Lanjut Ayanggg</button>
         `;
         createHeart();
-      }
+       }
       
     function createHeart() {
       const heart = document.createElement("div");
