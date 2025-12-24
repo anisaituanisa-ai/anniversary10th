@@ -97,28 +97,48 @@
         title: "Terima Kasih 🤍",
         text: "Makasih sudah sabar, setia, gak bosen terus sama aku, dan tetap milih aku tiap hari 🥰"
       },
+
       {
         quiz: true,
         id: 1,
         title: "Ku kasih kuis 😆",
         question: "Aku itu apa sih buat kamu?",
         options: [
-          "Pacar",
-          "Calon istri",
-          "Istri"
+          {
+            text: "Pacar",
+            response: "😤 HAH? Masa cuma pacar? Coba ulang mikirnya!"
+          },
+          {
+            text: "Calon istri",
+            response: "😌 Hmm masih boleh… tapi sebenernya kamu tau jawabannya~"
+          },
+          {
+            text: "Istri",
+            response: "🥰💍 NAH ITU BARU BENERRR!"
+          }
         ]
       },
       {
         quiz: true,
         id: 2,
-        title: "Ku kasih kuis lagi 😆",
-        question: "Hari ini rencananya jadi gimana?",
+        title: "Kuis lagi 😆",
+        question: "Hari ini rencananya gimana?",
         options: [
-          "Sesuai rencana awal banget",
-          "Sesuai rencana baru tapi seharian full sampai ganti hari",
-          "Gak ngapa ngapain"
+          {
+            text: "Sesuai rencana awal banget",
+            response: "😆 Bisa sih, tapi siap siap ada kejutan~"
+          },
+          {
+            text: "Sesuai rencana baru tapi full seharian",
+            response: "🥰✨ YANG INI PALING AKU SUKA!"
+          },
+          {
+            text: "Gak ngapa-ngapain",
+            response: "😳 Ih masa gitu jawabannya…"
+          }
         ]
       },
+
       {
         title: "🥰💖",
         text: "Jangan lupa nanti nyiapin bajumu yaaaa 😚"
@@ -143,34 +163,33 @@
             <p>${step.question}</p>
             ${step.options.map(opt =>
               `<button onclick="answerQuiz('${opt}', ${step.id})">${opt}</button>`
-            ).join("")}
+          ).join("")}
           `;
-        }
-
+        
         } else {
           card.innerHTML = `
             <h1>${step.title}</h1>
             <p>${step.text}</p>
             <button onclick="nextStep()">Lanjut ayanggg 💌</button>
           `;
+          index++; 
         }
 
-        createHeart();
-        index++;
-      } else {
-        card.innerHTML = `
-          <h1>💖💖💖</h1>
-          <p>
-            Makasih sudah mau sama aku sampai detik ini 🤍<br>
+    createHeart();
+  } else {
+    card.innerHTML = `
+      <h1>💖💖💖</h1>
+      <p>
+        Makasih sudah mau sama aku sampai detik ini 🤍<br>
             Moga kita terus bareng,<br>
             ketawa bareng,<br>
             gak bosen bosen sama aku,<br>
             dan tumbuh bareng 🌱<br><br>
             <strong>Happy Anniversary, Sayangggg ❤️</strong>
-          </p>
-        `;
-      }
+      </p>
+     `;
     }
+  }
 
     function answerQuiz(answer, quizId) {
   const card = document.getElementById("card");
