@@ -99,7 +99,6 @@
       },
       {
         quiz: true,
-        id: 1,
         title: "Ku kasih kuis 😆",
         question: "Aku itu apa sih buat kamu?",
         options: [
@@ -110,7 +109,6 @@
       },
       {
         quiz: true,
-        id: 2,
         title: "Ku kasih kuis lagi 😆",
         question: "Hari ini rencananya jadi gimana?",
         options: [
@@ -170,36 +168,19 @@
       }
     }
 
-    function answerQuiz(answer, quizId) {
-  const card = document.getElementById("card");
-
-  if (quizId === 1) {
-    card.innerHTML = `
-      <h1>😏😏</h1>
-      <p>
-        Kamu pilih:<br>
-        <strong>${answer}</strong><br><br>
-        Emang iya? Yakin? Pokok bukan sama nuna ataupun malah jawabannya nuna 😌
-      </p>
-      <button onclick="nextStep()">Lanjut ayanggg 💌</button>
-    `;
-  }
-
-  if (quizId === 2) {
-    card.innerHTML = `
-      <h1>🥰✨</h1>
-      <p>
-        Oooo jadi gitu rencananya 😆<br><br>
-        Kamu pilih:<br>
-        <strong>${answer}</strong><br><br>
-        Yang penting hari ini bareng oppa seharian full aja udah bikin aku happy 💞
-      </p>
-      <button onclick="nextStep()">Lanjuttt 💖</button>
-    `;
-  }
-
-  createHeart();
-}
+    function answerQuiz(answer) {
+      const card = document.getElementById("card");
+      card.innerHTML = `
+        <h1>😏😏</h1>
+        <p>
+          Kamu pilih:<br>
+          <strong>${answer}</strong><br><br>
+          Emang iya? Yakin? Pokok bukan sama nuna ataupun malah jawabannya nuna 😌
+        </p>
+        <button onclick="nextStep()">Lanjut Ayanggg</button>
+      `;
+      createHeart();
+    }
 
     function createHeart() {
       const heart = document.createElement("div");
