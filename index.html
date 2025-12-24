@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Anniversary ❤️</title>
+
   <style>
     body {
       margin: 0;
@@ -38,8 +39,10 @@
     }
 
     button {
-      margin-top: 20px;
-      padding: 12px 20px;
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
       border: none;
       border-radius: 30px;
       background: #ff5c8a;
@@ -57,13 +60,13 @@
     .heart {
       position: absolute;
       font-size: 20px;
-      animation: float 4s infinite;
+      animation: float 4s linear;
       opacity: 0.8;
     }
 
     @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100vh); opacity: 0; }
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-100vh); opacity: 0; }
     }
 
     @keyframes pop {
@@ -72,6 +75,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="card" id="card">
@@ -85,28 +89,66 @@
 
   <script>
     const steps = [
-      { title: "Happy Anniversary 💑", text: "Gak kerasa ya… kita sudah sejauh ini 🥹" },
-      { title: "Terima Kasih 🤍", text: "Makasih sudah sabar, setia, dan tetap milih aku tiap hari 🥰" },
-      { title: "Aku Sayang Kamu 💕", text: "Bukan cuma hari ini… tapi setiap hari 😚" },
-      { title: "Peluk Virtual 🤗", text: "Kalau kamu baca ini sambil senyum, berarti pelukanku sampai 😆💞" }
+      {
+        title: "Happy Anniversary 💑",
+        text: "Gak kerasa ya… kita sudah sejauh ini 🥹"
+      },
+      {
+        title: "Terima Kasih 🤍",
+        text: "Makasih sudah sabar, setia, dan tetap milih aku tiap hari 🥰"
+      },
+      {
+        quiz: true,
+        title: "Kuis Kecil 😆",
+        question: "Aku itu apa buat kamu?",
+        options: [
+          "Orang spesial ❤️",
+          "Teman hidup 🥰",
+          "Calon masa depan 😳"
+        ]
+      },
+      {
+        title: "Hehehe 😆💖",
+        text: "Jawaban kamu bener semua 😚"
+      },
+      {
+        title: "Peluk Virtual 🤗",
+        text: "Kalau kamu senyum sekarang, berarti pelukanku sampai 💞"
+      }
     ];
 
     let index = 0;
 
     function nextStep() {
+      const card = document.getElementById("card");
+
       if (index < steps.length) {
-        document.getElementById('card').innerHTML = `
-          <h1>${steps[index].title}</h1>
-          <p>${steps[index].text}</p>
-          <button onclick="nextStep()">Lanjut 💌</button>
-        `;
+        const step = steps[index];
+
+        if (step.quiz) {
+          card.innerHTML = `
+            <h1>${step.title}</h1>
+            <p>${step.question}</p>
+            ${step.options.map(opt =>
+              `<button onclick="answerQuiz('${opt}')">${opt}</button>`
+            ).join("")}
+          `;
+        } else {
+          card.innerHTML = `
+            <h1>${step.title}</h1>
+            <p>${step.text}</p>
+            <button onclick="nextStep()">Lanjut 💌</button>
+          `;
+        }
+
         createHeart();
         index++;
       } else {
-        document.getElementById('card').innerHTML = `
+        card.innerHTML = `
           <h1>💖💖💖</h1>
           <p>
-            Aku harap kita bisa terus bareng,<br>
+            Makasih sudah sampai sini 🤍<br>
+            Aku harap kita terus bareng,<br>
             ketawa bareng,<br>
             dan tumbuh bareng 🌱<br><br>
             <strong>Happy Anniversary, Sayang ❤️</strong>
@@ -115,12 +157,26 @@
       }
     }
 
+    function answerQuiz(answer) {
+      const card = document.getElementById("card");
+      card.innerHTML = `
+        <h1>😆💖</h1>
+        <p>
+          Kamu pilih:<br>
+          <strong>${answer}</strong><br><br>
+          Jawaban apa pun tetap bikin aku jatuh cinta lagi 😘
+        </p>
+        <button onclick="nextStep()">Lanjut 💌</button>
+      `;
+      createHeart();
+    }
+
     function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.bottom = '0';
-      heart.textContent = '❤️';
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.bottom = "0";
+      heart.textContent = "❤️";
       document.body.appendChild(heart);
 
       setTimeout(() => heart.remove(), 4000);
